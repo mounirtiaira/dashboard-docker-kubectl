@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+        - name: frontend
+          image: dashboard-frontend
+          ports:
+            - containerPort: 3000
+          env:
+            - name: DB_URL
+              value: "mongodb+srv://mounir:mounir@cluster0.0rnva.mongodb.net/executive-dashboard?retryWrites=true&w=majority"
